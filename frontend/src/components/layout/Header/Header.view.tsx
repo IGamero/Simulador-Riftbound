@@ -1,5 +1,3 @@
-
-import { Link } from "react-router-dom";
 import type { HeaderInterface } from "./Header.interface";
 import {
     HeaderContainer,
@@ -7,7 +5,8 @@ import {
     LeftSection,
     RightSection,
     NavLink,
-    NavBtn
+    NavBtn,
+    CustomLink
 } from "./Header.styles";
 import LoginModal from "../../Modals/LoginModal/LoginModal";
 
@@ -22,15 +21,14 @@ export default function HeaderView(
     return (
         <HeaderContainer>
             <LeftSection>
-                <Link
+                <CustomLink
                     to="/home"
                     style={{ display: "flex", height: "100%", alignItems: "center" }}
                 >
                     <Logo
-                        src="https://cmsassets.rgpub.io/sanity/images/dsfx7636/news/9eb028de391e65072d06e77f06d0955f66b9fa2c-736x316.png?auto=format&fit=fill&q=80&w=300"
-                        alt="Logo"
+                        src="/images/riftboundLogo.webp" alt="riftboundLogo"
                     />
-                </Link>
+                </CustomLink>
             </LeftSection>
 
             <RightSection>

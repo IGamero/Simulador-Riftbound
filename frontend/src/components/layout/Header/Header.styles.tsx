@@ -44,6 +44,10 @@ const RightSection = styled.nav`
   align-items: center;
 `;
 
+const CustomLink = styled(Link)`
+ ${btnStyle}
+`
+
 const NavLink = styled(Link)`
   ${btnStyle}
 `;
@@ -54,12 +58,13 @@ const NavBtn = styled.button`
 `;
 
 export {
-    btnStyle,
-    HeaderContainer,
-    Logo,
-    LeftSection,
-    RightSection,
-    NavLink,
-    NavBtn
+  btnStyle,
+  HeaderContainer,
+  Logo,
+  LeftSection,
+  RightSection,
+  CustomLink,
+  NavLink,
+  NavBtn
 };
 
