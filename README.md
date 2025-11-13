@@ -1,4 +1,4 @@
-# 🜂 Riftbound — Simulador TCG de League of Legends
+# Riftbound — Simulador TCG de League of Legends
 
 Riftbound es un simulador de **juego de cartas coleccionables (TCG)** ambientado en el universo de *League of Legends*.  
 El objetivo del proyecto es recrear la experiencia del futuro *Riftbound TCG*: permitiendo **ver cartas**, **crear mazos personalizados** y **jugar partidas online**.
