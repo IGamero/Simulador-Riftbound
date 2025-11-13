@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useGoogleLogin, type TokenResponse } from "@react-oauth/google";
 
 import LoginModalView from "./LoginModal.view";
+import RegisterModal from "../RegisterModal/RegisterModal";
 
 
 interface LoginModalProps {
@@ -14,6 +15,8 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
+    const [isRegisterOpen, setIsRegisterOpen] = useState(false);
+
 
 
     const loginWithGoogle = useGoogleLogin({
@@ -53,18 +56,33 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
 
     return (
 
-        <LoginModalView
-            closing={closing}
-            error={error}
-            username={username}
-            password={password}
-            onUsernameChange={setUsername}
-            onPasswordChange={setPassword}
-            onSubmit={handleSubmit}
-            onClose={handleClose}
-            handleAnimationEnd={handleAnimationEnd}
-            onGoogleLogin={() => loginWithGoogle()}
-        />
+        <>
+            <LoginModalView
+                closing={closing}
+                error={error}
+                username={username}
+                password={password}
+                onUsernameChange={setUsername}
+                onPasswordChange={setPassword}
+                onSubmit={handleSubmit}
+                onClose={handleClose}
+                handleAnimationEnd={handleAnimationEnd}
+                onRegisterClick={() => setIsRegisterOpen(true)}
+                // onRegisterClick={() => {
+                //     handleClose();
+                //     setTimeout(() => setIsRegisterOpen(true), 300);
+                // }}
+                onGoogleLogin={() => loginWithGoogle()}
+            />
+
+            {/* Renderiza el modal de registro cuando se haga clic */}
+            {isRegisterOpen && (
+                <RegisterModal
+                    isOpen={isRegisterOpen}
+                    onClose={() => setIsRegisterOpen(false)}
+                />
+            )}
+        </>
 
 
     );

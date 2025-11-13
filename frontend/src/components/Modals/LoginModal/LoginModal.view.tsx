@@ -6,6 +6,8 @@ import {
     Input,
     SubmitButton,
     ErrorMsg,
+    ResgisterWrapper,
+    RegisterButton,
     Divider,
     GoogleButton,
 } from "./LoginModal.styles";
@@ -22,6 +24,7 @@ export default function LoginModalView({
     onSubmit,
     onClose,
     handleAnimationEnd,
+    onRegisterClick,
     onGoogleLogin,
 }: LoginModalViewPropsInterface) {
     return (
@@ -50,6 +53,12 @@ export default function LoginModalView({
                     />
 
                     <SubmitButton type="submit">Entrar</SubmitButton>
+                    <ResgisterWrapper>
+                        <RegisterButton type="button" onClick={onRegisterClick}>
+                            Regístrate
+                        </RegisterButton>
+                    </ResgisterWrapper>
+
                     <Divider>o</Divider>
                     <GoogleButton type="button" onClick={onGoogleLogin}>
                         Iniciar sesión con Google

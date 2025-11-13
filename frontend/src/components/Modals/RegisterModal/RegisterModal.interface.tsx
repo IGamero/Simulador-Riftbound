@@ -1,4 +1,4 @@
-export interface LoginModalViewPropsInterface {
+export interface RegisterModalViewPropsInterface {
     className?: string;
     style?: React.CSSProperties;
     children?: React.ReactNode;
@@ -12,5 +12,4 @@ export interface LoginModalViewPropsInterface {
     onSubmit: (e: React.FormEvent) => void;
     onClose: () => void;
     handleAnimationEnd: () => void;
-    onGoogleLogin: () => void;
 }

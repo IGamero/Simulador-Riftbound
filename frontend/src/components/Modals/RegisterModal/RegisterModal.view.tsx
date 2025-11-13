@@ -6,13 +6,11 @@ import {
     Input,
     SubmitButton,
     ErrorMsg,
-    Divider,
-    GoogleButton,
-} from "./LoginModal.styles";
-import type { LoginModalViewPropsInterface } from "./LoginModal.interface";
+} from "./RegisterModal.styles";
+import type { RegisterModalViewPropsInterface } from "./RegisterModal.interface";
 
 
-export default function LoginModalView({
+export default function RegisterModalView({
     closing,
     error,
     username,
@@ -22,8 +20,7 @@ export default function LoginModalView({
     onSubmit,
     onClose,
     handleAnimationEnd,
-    onGoogleLogin,
-}: LoginModalViewPropsInterface) {
+}: RegisterModalViewPropsInterface) {
     return (
         <ModalOverlay
             $closing={closing}
@@ -48,12 +45,32 @@ export default function LoginModalView({
                         value={password}
                         onChange={(e) => onPasswordChange(e.target.value)}
                     />
+                    <Input
+                        type="text"
+                        placeholder="Usuario"
+                        value={username}
+                        onChange={(e) => onUsernameChange(e.target.value)}
+                    />
+                    <Input
+                        type="password"
+                        placeholder="Contraseña"
+                        value={password}
+                        onChange={(e) => onPasswordChange(e.target.value)}
+                    />
+                    <Input
+                        type="text"
+                        placeholder="Usuario"
+                        value={username}
+                        onChange={(e) => onUsernameChange(e.target.value)}
+                    />
+                    <Input
+                        type="password"
+                        placeholder="Contraseña"
+                        value={password}
+                        onChange={(e) => onPasswordChange(e.target.value)}
+                    />
 
                     <SubmitButton type="submit">Entrar</SubmitButton>
-                    <Divider>o</Divider>
-                    <GoogleButton type="button" onClick={onGoogleLogin}>
-                        Iniciar sesión con Google
-                    </GoogleButton>
                 </Form>
             </ModalContent>
         </ModalOverlay>

@@ -22,13 +22,20 @@ const HeaderContainer = styled.header`
   align-items: center;
   height: 70px;
   padding: 10px 70px;
+ 
   background-color: black;
   color: white;
+
+  /* Desactiva selección */
+   user-select: none;  
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
 `;
 
 const Logo = styled.img`
   height: 90%;
-  position: relative;
+  position: relative;  
 `;
 
 const LeftSection = styled.div`

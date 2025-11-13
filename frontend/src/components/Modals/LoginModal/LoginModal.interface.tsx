@@ -12,5 +12,6 @@ export interface LoginModalViewPropsInterface {
     onSubmit: (e: React.FormEvent) => void;
     onClose: () => void;
     handleAnimationEnd: () => void;
+    onRegisterClick: () => void;
     onGoogleLogin: () => void;
 }

@@ -1,31 +1,20 @@
 import { useState } from "react";
-import { useGoogleLogin, type TokenResponse } from "@react-oauth/google";
 
-import LoginModalView from "./LoginModal.view";
+import RegisterModalView from "./RegisterModal.view";
 
-
-interface LoginModalProps {
+interface RegisterModalProps {
     isOpen: boolean;
     onClose: () => void;
 }
 
-export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
+export default function RegisterModal({ isOpen, onClose }: RegisterModalProps) {
     const [closing, setClosing] = useState(false);
     const [username, setUsername] = useState("");
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
 
 
-    const loginWithGoogle = useGoogleLogin({
-        onSuccess: (tokenResponse: TokenResponse) => {
-            console.log("Google login success:", tokenResponse);
-            handleClose();
-        },
-        onError: () => {
-            console.error("Google login failed");
-            setError("Error al iniciar sesión con Google");
-        },
-    });
 
     if (!isOpen && !closing) return null; // Condición después de hooks
 
@@ -36,6 +25,7 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
             setClosing(false);
             onClose();
             setUsername("");
+            setEmail("");
             setPassword("");
             setError("");
         }
@@ -43,30 +33,27 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        if (!username || !password) {
+        if (!username || !email || !password) {
             setError("Por favor completa todos los campos");
             return;
         }
-        console.log("Login:", { username, password });
+        console.log("Register:", { username, email, password });
         handleClose();
     };
 
     return (
-
-        <LoginModalView
+        <RegisterModalView
             closing={closing}
             error={error}
             username={username}
+            // email={email}
             password={password}
             onUsernameChange={setUsername}
+            // onEmailChange={setEmail}
             onPasswordChange={setPassword}
             onSubmit={handleSubmit}
             onClose={handleClose}
             handleAnimationEnd={handleAnimationEnd}
-            onGoogleLogin={() => loginWithGoogle()}
         />
-
-
     );
 }
-
