@@ -9,10 +9,10 @@ const FooterContainer = styled.footer`
   background-color: grey;
   color: white;
 
-  position: fixed;  // fijo al viewport
-  bottom: 0;        // pegado abajo
-  left: 0;
-  width: 100%;      // ocupa todo el ancho
+  position: fixed;  
+  bottom: 0;        
+  left: 0;  
+  width: 100%;      
 `;
 
 export { FooterContainer }
