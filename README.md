@@ -37,6 +37,14 @@ El objetivo del proyecto es recrear la experiencia del futuro *Riftbound TCG*: p
 - Base de datos **MariaDB / MongoDB**  
 - Autenticación y gestión de partidas en tiempo real (WebSocket)
 
+## Objetivos futuros
+
+- Autenticación y registro de usuarios
+- Sistema completo de creación de mazos
+- Partidas en tiempo real con reglas completas
+- Modo espectador y clasificación online
+- Editor de cartas personalizadas
+
 
 ---
 
@@ -44,7 +52,8 @@ El objetivo del proyecto es recrear la experiencia del futuro *Riftbound TCG*: p
 
 Desde el directorio `/frontend`:
 
-```bash
+```
+bash
 # Instalar dependencias
 npm install
 
@@ -60,17 +69,7 @@ npm run build
 # Previsualizar el build
 npm run preview
 
----
-
-## Objetivos futuros
-
-- Autenticación y registro de usuarios
-- Sistema completo de creación de mazos
-- Partidas en tiempo real con reglas completas
-- Modo espectador y clasificación online
-- Editor de cartas personalizadas
-
----
+```
 
 ## Desarrollador
 
@@ -79,13 +78,16 @@ Desarrollador full stack especializado en TypeScript, Node.js y React.
 
 > “Riftbound busca llevar la esencia de Runaterra al formato TCG.”
 
----
 
 ## Licencia
 
 Este proyecto se distribuye bajo licencia **MIT**.  
 *League of Legends* y *Runaterra* son propiedad de Riot Games, Inc.  
-Riftbound es un proyecto no oficial con fines educativos y demostrativos.
+Este es un proyecto no oficial con fines educativos y demostrativos.
+
+
+
+
 
 
 
