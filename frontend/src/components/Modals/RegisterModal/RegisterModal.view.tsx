@@ -8,6 +8,8 @@ import {
     ErrorMsg,
 } from "./RegisterModal.styles";
 import type { RegisterModalViewPropsInterface } from "./RegisterModal.interface";
+import { modalController } from "../modalController";
+
 
 export default function RegisterModalView({
     closing,
@@ -27,7 +29,7 @@ export default function RegisterModalView({
     return (
         <ModalOverlay
             $closing={closing}
-            onClick={onClose}
+            onPointerDown={modalController.handleOverlayClick(onClose)}
             onAnimationEnd={handleAnimationEnd}
         >
             <ModalContent $closing={closing} onClick={(e) => e.stopPropagation()}>

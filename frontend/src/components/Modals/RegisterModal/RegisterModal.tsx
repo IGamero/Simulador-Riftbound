@@ -25,16 +25,33 @@ export default function RegisterModal({ isOpen, onClose }: RegisterModalProps) {
             setUsername("");
             setEmail("");
             setPassword("");
+            setConfirmPassword("");
             setError("");
         }
     };
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        if (!username || !email || !password) {
+
+        // Validaciones
+        if (!username || !email || !password || !confirmPassword) {
             setError("Por favor completa todos los campos");
             return;
         }
+
+        // Validar email
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            setError("Introduce un email válido");
+            return;
+        }
+
+        // Validar contraseña coincida
+        if (password !== confirmPassword) {
+            setError("Las contraseñas no coinciden");
+            return;
+        }
+
         console.log("Register:", { username, email, password });
         handleClose();
     };
