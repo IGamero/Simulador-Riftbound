@@ -1,19 +1,11 @@
-import React from "react";
+import { X } from "lucide-react";
 
-export default function EyeIcon() {
+import { CloseButtonWrapper } from "./commonStyles";
+
+export const CloseButton = ({ onClose }: { onClose: () => void }) => {
     return (
-        <div style={{ position: "relative", width: "100%" }}>
-            <div
-                style={{
-                    position: "absolute",
-                    right: "10px",
-                    top: "50%",
-                    transform: "translateY(-50%)",
-                    display: "flex",
-                    alignItems: "center",
-                }}
-            >
-            </div>
-        </div>
+        <CloseButtonWrapper onClick={onClose}>
+            <X size={20} />
+        </CloseButtonWrapper>
     );
-}
+};

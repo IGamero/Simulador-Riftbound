@@ -1,24 +1,23 @@
-import { Eye, EyeOff } from "lucide-react";
+import { Eye, EyeOff, X } from "lucide-react";
 import { useState } from "react";
 import {
-    ModalOverlay,
-    ModalContent,
-    CloseButton,
-    Form,
-    Input,
-    InputWrapper,
-    EyeIcon,
-    SubmitButton,
-    ErrorMsg,
-    ResgisterWrapper,
     RegisterButton,
-    Divider,
     GoogleButton,
 } from "./LoginModal.styles";
 import type { LoginModalViewPropsInterface } from "./LoginModal.interface";
 import { modalController } from "../modalController";
-
-
+import {
+    ModalOverlay,
+    ModalContent,
+    Form,
+    Input,
+    InputWrapper,
+    EyeIcon,
+    ErrorMsg,
+    SubmitButton,
+} from "../../common/commonStyles";
+import { Divider } from "../RegisterModal/RegisterModal.styles";
+import { CloseButton } from "../../common/elements";
 
 export default function LoginModalView({
     closing,
@@ -45,7 +44,7 @@ export default function LoginModalView({
             onAnimationEnd={handleAnimationEnd}
         >
             <ModalContent $closing={closing} onClick={(e) => e.stopPropagation()}>
-                <CloseButton onClick={onClose}>×</CloseButton>
+                <CloseButton onClose={onClose} />
                 <h2>Iniciar Sesión</h2>
                 {error && <ErrorMsg>{error}</ErrorMsg>}
 
@@ -64,21 +63,18 @@ export default function LoginModalView({
                             placeholder="Contraseña"
                             value={password}
                             onChange={(e) => onPasswordChange(e.target.value)}
-                            style={{ paddingRight: "40px" }} // espacio para que no pise el icono
                         />
 
                         <EyeIcon type="button" onClick={() => setShowPassword(!showPassword)}>
-                            {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                            {showPassword ? <EyeOff  /> : <Eye size={20} />}
                         </EyeIcon>
                     </InputWrapper>
 
                     <SubmitButton type="submit">Entrar</SubmitButton>
 
-                    <ResgisterWrapper>
-                        <RegisterButton type="button" onClick={onRegisterClick}>
-                            Regístrate
-                        </RegisterButton>
-                    </ResgisterWrapper>
+                    <RegisterButton type="button" onClick={onRegisterClick}>
+                        Regístrate
+                    </RegisterButton>
 
                     <Divider>o</Divider>
                     <GoogleButton type="button" onClick={onGoogleLogin}>

@@ -1,18 +1,18 @@
 import {
     ModalOverlay,
     ModalContent,
-    CloseButton,
     Form,
     Input,
     InputWrapper,
     EyeIcon,
     SubmitButton,
     ErrorMsg,
-} from "./RegisterModal.styles";
+} from "../../common/commonStyles";
 import type { RegisterModalViewPropsInterface } from "./RegisterModal.interface";
 import { modalController } from "../modalController";
 import { useState } from "react";
-import { Eye, EyeOff } from "lucide-react";
+import { Eye, EyeOff, X } from "lucide-react";
+import { CloseButton } from "../../common/elements";
 
 
 export default function RegisterModalView({
@@ -32,6 +32,7 @@ export default function RegisterModalView({
 }: RegisterModalViewPropsInterface) {
 
     const [showPassword, setShowPassword] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
     return (
         <ModalOverlay
@@ -40,7 +41,7 @@ export default function RegisterModalView({
             onAnimationEnd={handleAnimationEnd}
         >
             <ModalContent $closing={closing} onClick={(e) => e.stopPropagation()}>
-                <CloseButton onClick={onClose}>×</CloseButton>
+                <CloseButton onClose={onClose} />
                 <h2>Regístrarse</h2>
                 {error && <ErrorMsg>{error}</ErrorMsg>}
 
@@ -70,7 +71,6 @@ export default function RegisterModalView({
                             placeholder="Contraseña"
                             value={password}
                             onChange={(e) => onPasswordChange(e.target.value)}
-                            style={{ paddingRight: "40px" }} // espacio para que no pise el icono
                         />
 
                         <EyeIcon type="button" onClick={() => setShowPassword(!showPassword)}>
@@ -80,14 +80,15 @@ export default function RegisterModalView({
 
                     <InputWrapper>
                         <Input
-                            type="password"
+                            type={showConfirmPassword ? "text" : "password"}
                             placeholder="Confirmar Contraseña"
                             value={confirmPassword}
                             onChange={(e) => onConfirmPasswordChange(e.target.value)}
                         />
+                        <EyeIcon type="button" onClick={() => setShowConfirmPassword(!showConfirmPassword)}>
+                            {showConfirmPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                        </EyeIcon>
                     </InputWrapper>
-
-
 
                     <SubmitButton type="submit">Regístrate</SubmitButton>
                 </Form>
@@ -95,3 +96,4 @@ export default function RegisterModalView({
         </ModalOverlay>
     );
 }
+
