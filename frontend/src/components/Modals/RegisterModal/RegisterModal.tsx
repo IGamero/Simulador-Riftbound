@@ -8,7 +8,7 @@ interface RegisterModalProps {
     disableAnimation?: boolean; // NUEVO
 }
 
-export default function RegisterModal({ isOpen, onClose }: RegisterModalProps) {
+export default function RegisterModal({ isOpen, onClose, disableAnimation }: RegisterModalProps) {
     const [closing, setClosing] = useState(false);
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -16,9 +16,7 @@ export default function RegisterModal({ isOpen, onClose }: RegisterModalProps) {
     const [email, setEmail] = useState("");
     const [error, setError] = useState("");
 
-
-
-    if (!isOpen && !closing) return null; // Condición después de hooks
+    if (!isOpen && !closing) return null;
 
     const handleClose = () => setClosing(true);
 
@@ -27,19 +25,20 @@ export default function RegisterModal({ isOpen, onClose }: RegisterModalProps) {
             setClosing(false);
             onClose();
             setUsername("");
-            setEmail("");
             setPassword("");
+            setConfirmPassword("");
+            setEmail("");
             setError("");
         }
     };
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        if (!username || !email || !password) {
+        if (!username || !email || !password || !confirmPassword) {
             setError("Por favor completa todos los campos");
             return;
         }
-        console.log("Register:", { username, email, password });
+        console.log("Register:", { username, email, password, confirmPassword });
         handleClose();
     };
 
@@ -58,7 +57,7 @@ export default function RegisterModal({ isOpen, onClose }: RegisterModalProps) {
             onSubmit={handleSubmit}
             onClose={handleClose}
             handleAnimationEnd={handleAnimationEnd}
-            
+            disableAnimation={disableAnimation} // NUEVO
         />
     );
 }

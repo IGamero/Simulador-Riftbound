@@ -9,6 +9,8 @@ export interface RegisterModalViewPropsInterface {
     password: string;
     email: string;
     confirmPassword: string;
+    disableAnimation?: boolean
+
     onUsernameChange: (value: string) => void;
     onPasswordChange: (value: string) => void;
     onConfirmPasswordChange: (value: string) => void;
