@@ -50,6 +50,7 @@ const Form = styled.form`
 `;
 
 const Input = styled.input`
+  width: 100%;
   padding: 10px 12px;
   font-size: 1rem;
   border-radius: 6px;
@@ -60,6 +61,29 @@ const Input = styled.input`
     border-color: #66fcf1;
   }
 `;
+
+const InputWrapper = styled.div`
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+`;
+
+const EyeIcon = styled.button`
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+
+    display: flex;
+    align-items: center;
+`;
+
 
 const SubmitButton = styled.button`
   padding: 10px 12px;
@@ -137,6 +161,8 @@ export {
   CloseButton,
   Form,
   Input,
+  InputWrapper,
+  EyeIcon,
   SubmitButton,
   ErrorMsg,
   Divider,

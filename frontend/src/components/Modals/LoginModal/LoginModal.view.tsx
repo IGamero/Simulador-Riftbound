@@ -1,9 +1,13 @@
+import { Eye, EyeOff } from "lucide-react";
+import { useState } from "react";
 import {
     ModalOverlay,
     ModalContent,
     CloseButton,
     Form,
     Input,
+    InputWrapper,
+    EyeIcon,
     SubmitButton,
     ErrorMsg,
     ResgisterWrapper,
@@ -13,7 +17,6 @@ import {
 } from "./LoginModal.styles";
 import type { LoginModalViewPropsInterface } from "./LoginModal.interface";
 import { modalController } from "../modalController";
-
 
 
 
@@ -30,6 +33,11 @@ export default function LoginModalView({
     onRegisterClick,
     onGoogleLogin,
 }: LoginModalViewPropsInterface) {
+
+    const [showPassword, setShowPassword] = useState(false);
+
+
+
     return (
         <ModalOverlay
             $closing={closing}
@@ -42,18 +50,27 @@ export default function LoginModalView({
                 {error && <ErrorMsg>{error}</ErrorMsg>}
 
                 <Form onSubmit={onSubmit}>
-                    <Input
-                        type="text"
-                        placeholder="Usuario"
-                        value={username}
-                        onChange={(e) => onUsernameChange(e.target.value)}
-                    />
-                    <Input
-                        type="password"
-                        placeholder="Contraseña"
-                        value={password}
-                        onChange={(e) => onPasswordChange(e.target.value)}
-                    />
+                    <InputWrapper>
+                        <Input
+                            type="text"
+                            placeholder="Usuario"
+                            value={username}
+                            onChange={(e) => onUsernameChange(e.target.value)}
+                        />
+                    </InputWrapper>
+                    <InputWrapper>
+                        <Input
+                            type={showPassword ? "text" : "password"}
+                            placeholder="Contraseña"
+                            value={password}
+                            onChange={(e) => onPasswordChange(e.target.value)}
+                            style={{ paddingRight: "40px" }} // espacio para que no pise el icono
+                        />
+
+                        <EyeIcon type="button" onClick={() => setShowPassword(!showPassword)}>
+                            {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                        </EyeIcon>
+                    </InputWrapper>
 
                     <SubmitButton type="submit">Entrar</SubmitButton>
 

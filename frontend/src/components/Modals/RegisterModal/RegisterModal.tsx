@@ -1,5 +1,6 @@
 import { useState } from "react";
 import RegisterModalView from "./RegisterModal.view";
+import { validateEmail, validateEmpty, validateMatchPassword } from "../../../utils/formValidations";
 
 interface RegisterModalProps {
     isOpen: boolean;
@@ -34,15 +35,21 @@ export default function RegisterModal({ isOpen, onClose }: RegisterModalProps) {
         e.preventDefault();
 
         // Validaciones
-        if (!username || !email || !password || !confirmPassword) {
-            setError("Por favor completa todos los campos");
+        const emptyError: string | boolean = validateEmpty(username, email, password, confirmPassword);
+        if (emptyError) {
+            setError(emptyError);
             return;
         }
 
-        // Validar email
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(email)) {
-            setError("Introduce un email válido");
+        const emailError: string | boolean = validateEmail(email);
+        if (emailError) {
+            setError(emailError);
+            return;
+        }
+
+        const passMatchError: string | boolean = validateMatchPassword(password, confirmPassword);
+        if (passMatchError) {
+            setError(passMatchError);
             return;
         }
 

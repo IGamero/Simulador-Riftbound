@@ -4,11 +4,15 @@ import {
     CloseButton,
     Form,
     Input,
+    InputWrapper,
+    EyeIcon,
     SubmitButton,
     ErrorMsg,
 } from "./RegisterModal.styles";
 import type { RegisterModalViewPropsInterface } from "./RegisterModal.interface";
 import { modalController } from "../modalController";
+import { useState } from "react";
+import { Eye, EyeOff } from "lucide-react";
 
 
 export default function RegisterModalView({
@@ -26,6 +30,9 @@ export default function RegisterModalView({
     onClose,
     handleAnimationEnd,
 }: RegisterModalViewPropsInterface) {
+
+    const [showPassword, setShowPassword] = useState(false);
+
     return (
         <ModalOverlay
             $closing={closing}
@@ -38,33 +45,49 @@ export default function RegisterModalView({
                 {error && <ErrorMsg>{error}</ErrorMsg>}
 
                 <Form onSubmit={onSubmit}>
-                    <Input
-                        type="text"
-                        placeholder="Usuario"
-                        value={username}
-                        onChange={(e) => onUsernameChange(e.target.value)}
-                    />
 
-                    <Input
-                        type="text"
-                        placeholder="Email"
-                        value={email}
-                        onChange={(e) => onEmailChange(e.target.value)}
-                    />
+                    <InputWrapper>
+                        <Input
+                            type="text"
+                            placeholder="Usuario"
+                            value={username}
+                            onChange={(e) => onUsernameChange(e.target.value)}
+                        />
+                    </InputWrapper>
 
-                    <Input
-                        type="password"
-                        placeholder="Contraseña"
-                        value={password}
-                        onChange={(e) => onPasswordChange(e.target.value)}
-                    />
+                    <InputWrapper>
+                        <Input
+                            type="text"
+                            placeholder="Email"
+                            value={email}
+                            onChange={(e) => onEmailChange(e.target.value)}
+                        />
+                    </InputWrapper>
 
-                    <Input
-                        type="password"
-                        placeholder="Confirmar Contraseña"
-                        value={confirmPassword}
-                        onChange={(e) => onConfirmPasswordChange(e.target.value)}
-                    />
+                    <InputWrapper>
+                        <Input
+                            type={showPassword ? "text" : "password"}
+                            placeholder="Contraseña"
+                            value={password}
+                            onChange={(e) => onPasswordChange(e.target.value)}
+                            style={{ paddingRight: "40px" }} // espacio para que no pise el icono
+                        />
+
+                        <EyeIcon type="button" onClick={() => setShowPassword(!showPassword)}>
+                            {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                        </EyeIcon>
+                    </InputWrapper>
+
+                    <InputWrapper>
+                        <Input
+                            type="password"
+                            placeholder="Confirmar Contraseña"
+                            value={confirmPassword}
+                            onChange={(e) => onConfirmPasswordChange(e.target.value)}
+                        />
+                    </InputWrapper>
+
+
 
                     <SubmitButton type="submit">Regístrate</SubmitButton>
                 </Form>
