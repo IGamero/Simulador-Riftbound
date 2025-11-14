@@ -10,8 +10,9 @@ interface RegisterModalProps {
 export default function RegisterModal({ isOpen, onClose }: RegisterModalProps) {
     const [closing, setClosing] = useState(false);
     const [username, setUsername] = useState("");
-    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
+    const [email, setEmail] = useState("");
     const [error, setError] = useState("");
 
 
@@ -46,11 +47,13 @@ export default function RegisterModal({ isOpen, onClose }: RegisterModalProps) {
             closing={closing}
             error={error}
             username={username}
-            // email={email}
             password={password}
+            email={email}
+            confirmPassword={confirmPassword}
             onUsernameChange={setUsername}
-            // onEmailChange={setEmail}
             onPasswordChange={setPassword}
+            onConfirmPasswordChange={setConfirmPassword}
+            onEmailChange={setEmail}
             onSubmit={handleSubmit}
             onClose={handleClose}
             handleAnimationEnd={handleAnimationEnd}

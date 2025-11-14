@@ -15,8 +15,12 @@ export default function RegisterModalView({
     error,
     username,
     password,
+    email,
+    confirmPassword,
     onUsernameChange,
     onPasswordChange,
+    onEmailChange,
+    onConfirmPasswordChange,
     onSubmit,
     onClose,
     handleAnimationEnd,
@@ -29,7 +33,7 @@ export default function RegisterModalView({
         >
             <ModalContent $closing={closing} onClick={(e) => e.stopPropagation()}>
                 <CloseButton onClick={onClose}>×</CloseButton>
-                <h2>Iniciar Sesión</h2>
+                <h2>Regístrarse</h2>
                 {error && <ErrorMsg>{error}</ErrorMsg>}
 
                 <Form onSubmit={onSubmit}>
@@ -39,30 +43,14 @@ export default function RegisterModalView({
                         value={username}
                         onChange={(e) => onUsernameChange(e.target.value)}
                     />
-                    <Input
-                        type="password"
-                        placeholder="Contraseña"
-                        value={password}
-                        onChange={(e) => onPasswordChange(e.target.value)}
-                    />
+
                     <Input
                         type="text"
-                        placeholder="Usuario"
-                        value={username}
-                        onChange={(e) => onUsernameChange(e.target.value)}
+                        placeholder="Email"
+                        value={email}
+                        onChange={(e) => onEmailChange(e.target.value)}
                     />
-                    <Input
-                        type="password"
-                        placeholder="Contraseña"
-                        value={password}
-                        onChange={(e) => onPasswordChange(e.target.value)}
-                    />
-                    <Input
-                        type="text"
-                        placeholder="Usuario"
-                        value={username}
-                        onChange={(e) => onUsernameChange(e.target.value)}
-                    />
+
                     <Input
                         type="password"
                         placeholder="Contraseña"
@@ -70,7 +58,15 @@ export default function RegisterModalView({
                         onChange={(e) => onPasswordChange(e.target.value)}
                     />
 
-                    <SubmitButton type="submit">Entrar</SubmitButton>
+                    <Input
+                        type="password"
+                        placeholder="Confirmar Contraseña"
+                        value={confirmPassword}
+                        onChange={(e) => onConfirmPasswordChange(e.target.value)}
+                    />
+
+
+                    <SubmitButton type="submit">Regístrate</SubmitButton>
                 </Form>
             </ModalContent>
         </ModalOverlay>
