@@ -1,33 +1,18 @@
-import type { HeaderInterface } from "./Header.interface";
-import {
-    HeaderContainer,
-    Logo,
-    LeftSection,
-    RightSection,
-    NavLink,
-    NavBtn,
-    CustomLink
-} from "./Header.styles";
+import { useState } from "react";
+import { HeaderContainer, LeftSection, RightSection, NavLink, NavBtn, Logo, CustomLink } from "./Header.styles";
 import LoginModal from "../../Modals/LoginModal/LoginModal";
+import RegisterModal from "../../Modals/RegisterModal/RegisterModal";
 
-
-export default function HeaderView(
-    {
-        setIsModalOpen,
-        isModalOpen
-    }: HeaderInterface) {
+export default function HeaderView() {
+    const [isLoginOpen, setIsLoginOpen] = useState(false);
+    const [isRegisterOpen, setIsRegisterOpen] = useState(false);
 
 
     return (
         <HeaderContainer>
             <LeftSection>
-                <CustomLink
-                    to="/home"
-                    style={{ display: "flex", height: "100%", alignItems: "center" }}
-                >
-                    <Logo
-                        src="/images/riftboundLogo.webp" alt="riftboundLogo"
-                    />
+                <CustomLink to="/home" style={{ display: "flex", height: "100%", alignItems: "center" }}>
+                    <Logo src="/images/riftboundLogo.webp" alt="riftboundLogo" />
                 </CustomLink>
             </LeftSection>
 
@@ -35,12 +20,24 @@ export default function HeaderView(
                 <NavLink to="/cards">Cartas</NavLink>
                 <NavLink to="/decks">Mazos</NavLink>
                 <NavLink to="/play">Jugar</NavLink>
-                <NavBtn onClick={() => setIsModalOpen(true)}>Iniciar Sesión</NavBtn>
+                <NavBtn onClick={() => setIsLoginOpen(true)}>Iniciar Sesión</NavBtn>
             </RightSection>
 
+            {/* LoginModal */}
             <LoginModal
-                isOpen={isModalOpen}
-                onClose={() => setIsModalOpen(false)}
+                isOpen={isLoginOpen}
+                onClose={() => setIsLoginOpen(false)}
+                onRegisterClick={() => {
+                    setIsLoginOpen(false); // cierra login
+                    // setTimeout(() => setIsRegisterOpen(true), 300); // abre registro tras animación
+                    setIsRegisterOpen(true)
+                }}
+            />
+
+            {/* RegisterModal */}
+            <RegisterModal
+                isOpen={isRegisterOpen}
+                onClose={() => setIsRegisterOpen(false)}
             />
         </HeaderContainer>
     );

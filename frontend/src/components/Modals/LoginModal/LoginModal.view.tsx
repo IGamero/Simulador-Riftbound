@@ -57,6 +57,7 @@ export default function LoginModalView({
                         <RegisterButton type="button" onClick={onRegisterClick}>
                             Regístrate
                         </RegisterButton>
+
                     </ResgisterWrapper>
 
                     <Divider>o</Divider>

@@ -5,6 +5,7 @@ import RegisterModalView from "./RegisterModal.view";
 interface RegisterModalProps {
     isOpen: boolean;
     onClose: () => void;
+    disableAnimation?: boolean; // NUEVO
 }
 
 export default function RegisterModal({ isOpen, onClose }: RegisterModalProps) {
@@ -57,6 +58,7 @@ export default function RegisterModal({ isOpen, onClose }: RegisterModalProps) {
             onSubmit={handleSubmit}
             onClose={handleClose}
             handleAnimationEnd={handleAnimationEnd}
+            
         />
     );
 }
