@@ -1,15 +1,16 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useGoogleLogin, type TokenResponse } from "@react-oauth/google";
 import LoginModalView from "./LoginModal.view";
 
 interface LoginModalProps {
   isOpen: boolean;
   onClose: () => void;
-  onRegisterClick: () => void; // NUEVO
+  onRegisterClick: () => void;
 }
 
 export default function LoginModal({ isOpen, onClose, onRegisterClick }: LoginModalProps) {
-  const [closing, setClosing] = useState(false);
+  const [visible, setVisible] = useState(false); // Para renderizado en DOM
+  const [closing, setClosing] = useState(false); // Para animación de cierre
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -25,17 +26,27 @@ export default function LoginModal({ isOpen, onClose, onRegisterClick }: LoginMo
     },
   });
 
-  if (!isOpen && !closing) return null;
+  useEffect(() => {
+    if (isOpen) {
+      setVisible(true);
+      setClosing(false);
+    } else if (visible) {
+      setClosing(true);
+    }
+  }, [isOpen]);
+
+  if (!visible) return null;
 
   const handleClose = () => setClosing(true);
 
   const handleAnimationEnd = () => {
     if (closing) {
       setClosing(false);
-      onClose();
+      setVisible(false);
       setUsername("");
       setPassword("");
       setError("");
+      onClose();
     }
   };
 
@@ -60,7 +71,7 @@ export default function LoginModal({ isOpen, onClose, onRegisterClick }: LoginMo
       onSubmit={handleSubmit}
       onClose={handleClose}
       handleAnimationEnd={handleAnimationEnd}
-      onRegisterClick={onRegisterClick} // usa la prop externa
+      onRegisterClick={onRegisterClick}
       onGoogleLogin={() => loginWithGoogle()}
     />
   );

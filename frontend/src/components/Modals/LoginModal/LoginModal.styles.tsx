@@ -61,6 +61,21 @@ const Input = styled.input`
   }
 `;
 
+const ResgisterWrapper = styled.div``;
+const RegisterButton = styled.button`
+  width: 100%;
+  padding: 10px 12px;
+  background-color: #6c63ff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s;
+  &:hover { background-color: #574fd6; }
+`;
+
 const SubmitButton = styled.button`
   padding: 10px 12px;
   background-color: #66fcf1;
@@ -70,7 +85,6 @@ const SubmitButton = styled.button`
   cursor: pointer;
   color: #0b0c10;
   font-weight: bold;
-  transition: 0.3s;
 
   &:hover {
     background-color: #52d1d8;
@@ -80,27 +94,6 @@ const SubmitButton = styled.button`
 const ErrorMsg = styled.p`
   color: red;
   font-size: 0.9rem;
-`;
-
-const ResgisterWrapper = styled.div`
-`;
-
-const RegisterButton = styled.button`
-  width: 100%;
-  padding: 10px 12px;
-  /* margin-top: 10px; */
-  background-color: #6c63ff;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  font-weight: bold;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: 0.3s;
-
-  &:hover {
-    background-color: #574fd6;
-  }
 `;
 
 const Divider = styled.div`
@@ -143,7 +136,6 @@ const GoogleButton = styled.button`
   align-items: center;
   justify-content: center;
   gap: 8px;
-  transition: 0.3s;
 
   &:hover {
     background-color: #357ae8;
@@ -160,10 +152,10 @@ export {
   CloseButton,
   Form,
   Input,
+  ResgisterWrapper, 
+  RegisterButton,
   SubmitButton,
   ErrorMsg,
-  ResgisterWrapper,
-  RegisterButton,
   Divider,
   GoogleButton,
 };

@@ -1,16 +1,11 @@
-import styled, { keyframes, css } from "styled-components";
+import styled, { keyframes } from "styled-components";
 
+const fadeIn = keyframes`from { opacity: 0; } to { opacity: 1; }`;
 const fadeOut = keyframes`from { opacity: 1; } to { opacity: 0; }`;
+const scaleIn = keyframes`from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; }`;
 const scaleOut = keyframes`from { transform: scale(1); opacity: 1; } to { transform: scale(0.8); opacity: 0; }`;
 
-// Animación solo al cerrar
-const overlayAnimation = css<{ $closing?: boolean }>`
-  ${({ $closing }) => $closing && css`animation: ${fadeOut} 0.3s ease forwards;`}
-`;
 
-const contentAnimation = css<{ $closing?: boolean }>`
-  ${({ $closing }) => $closing && css`animation: ${scaleOut} 0.3s ease forwards;`}
-`;
 
 const ModalOverlay = styled.div<{ $closing?: boolean }>`
   position: fixed;
@@ -21,7 +16,7 @@ const ModalOverlay = styled.div<{ $closing?: boolean }>`
   align-items: center;
   z-index: 1000;
 
-  ${overlayAnimation}
+  animation: ${({ $closing }) => ($closing ? fadeOut : fadeIn)} 0.3s ease forwards;
 `;
 
 const ModalContent = styled.div<{ $closing?: boolean }>`
@@ -34,7 +29,7 @@ const ModalContent = styled.div<{ $closing?: boolean }>`
   position: relative;
   text-align: center;
 
-  ${contentAnimation}
+  animation: ${({ $closing }) => ($closing ? scaleOut : scaleIn)} 0.3s ease forwards;
 `;
 
 const CloseButton = styled.button`
@@ -86,25 +81,6 @@ const ErrorMsg = styled.p`
   font-size: 0.9rem;
 `;
 
-const ResgisterWrapper = styled.div``;
-
-const RegisterButton = styled.button`
-  width: 100%;
-  padding: 10px 12px;
-  background-color: #6c63ff;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  font-weight: bold;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: 0.3s;
-
-  &:hover {
-    background-color: #574fd6;
-  }
-`;
-
 const Divider = styled.div`
   display: flex;
   align-items: center;
@@ -113,8 +89,8 @@ const Divider = styled.div`
   font-size: 0.9rem;
   margin: 10px 0;
 
-  pointer-events: none;
-  user-select: none;
+  pointer-events: none; /* No interactuable con el ratón */
+  user-select: none;    /* No se puede seleccionar el texto */
 
   &::before,
   &::after {
@@ -163,8 +139,6 @@ export {
   Input,
   SubmitButton,
   ErrorMsg,
-  ResgisterWrapper,
-  RegisterButton,
   Divider,
   GoogleButton,
 };

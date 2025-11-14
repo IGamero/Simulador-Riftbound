@@ -7,6 +7,10 @@ export default function HeaderView() {
     const [isLoginOpen, setIsLoginOpen] = useState(false);
     const [isRegisterOpen, setIsRegisterOpen] = useState(false);
 
+    const openRegisterWithDelay = () => {
+        setIsLoginOpen(false); // inicia cierre del login
+        setTimeout(() => setIsRegisterOpen(true), 300); // abre registro tras animación de cierre
+    };
 
     return (
         <HeaderContainer>
@@ -23,18 +27,12 @@ export default function HeaderView() {
                 <NavBtn onClick={() => setIsLoginOpen(true)}>Iniciar Sesión</NavBtn>
             </RightSection>
 
-            {/* LoginModal */}
             <LoginModal
                 isOpen={isLoginOpen}
                 onClose={() => setIsLoginOpen(false)}
-                onRegisterClick={() => {
-                    setIsLoginOpen(false); // cierra login
-                    // setTimeout(() => setIsRegisterOpen(true), 300); // abre registro tras animación
-                    setIsRegisterOpen(true)
-                }}
+                onRegisterClick={openRegisterWithDelay}
             />
 
-            {/* RegisterModal */}
             <RegisterModal
                 isOpen={isRegisterOpen}
                 onClose={() => setIsRegisterOpen(false)}

@@ -9,7 +9,6 @@ import {
 } from "./RegisterModal.styles";
 import type { RegisterModalViewPropsInterface } from "./RegisterModal.interface";
 
-
 export default function RegisterModalView({
     closing,
     error,
@@ -17,7 +16,6 @@ export default function RegisterModalView({
     password,
     email,
     confirmPassword,
-    disableAnimation, 
     onUsernameChange,
     onPasswordChange,
     onEmailChange,
@@ -28,14 +26,11 @@ export default function RegisterModalView({
 }: RegisterModalViewPropsInterface) {
     return (
         <ModalOverlay
-            $closing={disableAnimation ? false : closing}
+            $closing={closing}
             onClick={onClose}
             onAnimationEnd={handleAnimationEnd}
         >
-            <ModalContent
-                $closing={disableAnimation ? false : closing}
-                onClick={(e) => e.stopPropagation()}
-            >
+            <ModalContent $closing={closing} onClick={(e) => e.stopPropagation()}>
                 <CloseButton onClick={onClose}>×</CloseButton>
                 <h2>Regístrarse</h2>
                 {error && <ErrorMsg>{error}</ErrorMsg>}
@@ -47,18 +42,21 @@ export default function RegisterModalView({
                         value={username}
                         onChange={(e) => onUsernameChange(e.target.value)}
                     />
+
                     <Input
                         type="text"
                         placeholder="Email"
                         value={email}
                         onChange={(e) => onEmailChange(e.target.value)}
                     />
+
                     <Input
                         type="password"
                         placeholder="Contraseña"
                         value={password}
                         onChange={(e) => onPasswordChange(e.target.value)}
                     />
+
                     <Input
                         type="password"
                         placeholder="Confirmar Contraseña"

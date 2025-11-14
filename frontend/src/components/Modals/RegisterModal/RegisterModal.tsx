@@ -1,14 +1,12 @@
 import { useState } from "react";
-
 import RegisterModalView from "./RegisterModal.view";
 
 interface RegisterModalProps {
     isOpen: boolean;
     onClose: () => void;
-    disableAnimation?: boolean; // NUEVO
 }
 
-export default function RegisterModal({ isOpen, onClose, disableAnimation }: RegisterModalProps) {
+export default function RegisterModal({ isOpen, onClose }: RegisterModalProps) {
     const [closing, setClosing] = useState(false);
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -25,20 +23,19 @@ export default function RegisterModal({ isOpen, onClose, disableAnimation }: Reg
             setClosing(false);
             onClose();
             setUsername("");
-            setPassword("");
-            setConfirmPassword("");
             setEmail("");
+            setPassword("");
             setError("");
         }
     };
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        if (!username || !email || !password || !confirmPassword) {
+        if (!username || !email || !password) {
             setError("Por favor completa todos los campos");
             return;
         }
-        console.log("Register:", { username, email, password, confirmPassword });
+        console.log("Register:", { username, email, password });
         handleClose();
     };
 
@@ -57,7 +54,6 @@ export default function RegisterModal({ isOpen, onClose, disableAnimation }: Reg
             onSubmit={handleSubmit}
             onClose={handleClose}
             handleAnimationEnd={handleAnimationEnd}
-            disableAnimation={disableAnimation} // NUEVO
         />
     );
 }
