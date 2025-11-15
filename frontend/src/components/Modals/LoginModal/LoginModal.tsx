@@ -55,12 +55,11 @@ export default function LoginModal({ isOpen, onClose, onRegisterClick }: LoginMo
         e.preventDefault();
 
         // Validaciones
-        const emptyError: string | boolean = validateEmpty(username, password);
+        const emptyError: string | false = validateEmpty(username, password);
         if (emptyError) {
             setError(emptyError);
             return;
         }
-
 
         console.log("Login:", { username, password });
         handleClose();

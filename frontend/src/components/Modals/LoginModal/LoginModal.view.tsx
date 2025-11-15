@@ -66,7 +66,7 @@ export default function LoginModalView({
                         />
 
                         <EyeIcon type="button" onClick={() => setShowPassword(!showPassword)}>
-                            {showPassword ? <EyeOff  /> : <Eye size={20} />}
+                            {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
                         </EyeIcon>
                     </InputWrapper>
 
